@@ -1,4 +1,4 @@
-package graduation.busstation.service;
+package graduation.busstation.validate;
 
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 import static graduation.busstation.entity.QBusStation.busStation;
@@ -20,30 +21,21 @@ import static graduation.busstation.entity.QBusStation.busStation;
 @RequiredArgsConstructor
 public class StationValidate {
 
-    @PersistenceContext
-    private final EntityManager em;
+    private final StationRepository stationRepository;
 
     @Transactional
     public boolean validateStationInfo(String stationName, String stationMacAddress){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+
 
         //TODO 파라미터가 null로 들어올 경우를 대비하는 코드도 작성해야함
 
         //stationName으로 찾기
-        BusStation dbStationName = queryFactory
-                .select(busStation)
-                .from(busStation)
-                .where(busStation.busStationName.eq(stationName))
-                .fetchOne();
+        List<BusStation> findStationName = stationRepository.findByBusStationName(stationName);
 
         //MacAddress으로 찾기
-        BusStation dbStationMacAddress = queryFactory
-                .select(busStation)
-                .from(busStation)
-                .where(busStation.deviceMacAddress.eq(stationMacAddress))
-                .fetchOne();
+        List<BusStation> findDeviceMacAddress = stationRepository.findByDeviceMacAddress(stationMacAddress);
 
-        if(dbStationName == null || dbStationMacAddress == null){
+        if(findStationName.isEmpty() || findDeviceMacAddress.isEmpty()){
             return false;
         }
 
