@@ -1,9 +1,10 @@
 package graduation.busstation.service;
 
 import graduation.busstation.entity.BusStation;
+import graduation.busstation.repository.StationRepository;
+import graduation.busstation.validate.StationValidate;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,15 +14,15 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest
 @Transactional
 class StationValidateTest {
 
-    @PersistenceContext
-    EntityManager em;
+
+    @Autowired
+    StationRepository stationRepository;
 
     @Autowired
     StationValidate stationValidate;
@@ -33,8 +34,7 @@ class StationValidateTest {
         station.setDeviceMacAddress("FC-AA-14-44-4F-81");
         station.setDateTime(LocalDateTime.now());
         station.setStationStatus("도착");
-        em.persist(station);
-        stationValidate = new StationValidate(em);
+        stationRepository.save(station);
     }
 
     @Test

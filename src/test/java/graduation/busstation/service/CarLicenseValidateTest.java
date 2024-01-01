@@ -1,27 +1,24 @@
 package graduation.busstation.service;
 
-import graduation.busstation.entity.BusStation;
 import graduation.busstation.entity.CarLicense;
+import graduation.busstation.repository.CarLicenseRepository;
+import graduation.busstation.validate.CarLicenseValidate;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDateTime;
-
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
 class CarLicenseValidateTest {
 
-    @PersistenceContext
-    EntityManager em;
+    @Autowired
+    CarLicenseRepository carLicenseRepository;
 
     @Autowired
     CarLicenseValidate carLicenseValidate;
@@ -30,8 +27,7 @@ class CarLicenseValidateTest {
     public void before(){
         CarLicense carLicense = new CarLicense();
         carLicense.setLicense("12가4519");
-        em.persist(carLicense);
-        carLicenseValidate = new CarLicenseValidate(em);
+        carLicenseRepository.save(carLicense);
     }
 
     @Test
