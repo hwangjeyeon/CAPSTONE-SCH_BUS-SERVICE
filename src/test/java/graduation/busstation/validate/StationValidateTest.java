@@ -1,4 +1,4 @@
-package graduation.busstation.service;
+package graduation.busstation.validate;
 
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
@@ -32,7 +32,8 @@ class StationValidateTest {
         BusStation station = new BusStation();
         station.setBusStationName("후문");
         station.setDeviceMacAddress("FC-AA-14-44-4F-81");
-        station.setDateTime(LocalDateTime.now());
+        station.setArrivedDateTime(LocalDateTime.now());
+        station.setDepartedDateTime(LocalDateTime.now());
         station.setStationStatus("도착");
         stationRepository.save(station);
     }
@@ -48,7 +49,6 @@ class StationValidateTest {
         assertThat(test2).isFalse();
         assertThat(test3).isFalse();
         assertThat(test4).isFalse();
-
     }
 
 
