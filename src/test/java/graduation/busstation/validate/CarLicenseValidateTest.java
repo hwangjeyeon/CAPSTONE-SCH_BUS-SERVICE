@@ -1,4 +1,4 @@
-package graduation.busstation.service;
+package graduation.busstation.validate;
 
 import graduation.busstation.entity.CarLicense;
 import graduation.busstation.repository.CarLicenseRepository;
