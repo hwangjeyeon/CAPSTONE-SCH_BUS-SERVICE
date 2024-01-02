@@ -20,6 +20,8 @@ public class RenewStationInfoService {
         BusStation busStation = em.find(BusStation.class, id);
         busStation.setStationStatus("도착");
         busStation.setArrivedDateTime(LocalDateTime.now());
+        em.flush();
+        em.clear();
         return busStation.getArrivedDateTime();
     }
 
@@ -28,6 +30,8 @@ public class RenewStationInfoService {
         BusStation busStation = em.find(BusStation.class, id);
         busStation.setStationStatus("출발");
         busStation.setDepartedDateTime(LocalDateTime.now());
+        em.flush();
+        em.clear();
         return busStation.getDepartedDateTime();
     }
 
