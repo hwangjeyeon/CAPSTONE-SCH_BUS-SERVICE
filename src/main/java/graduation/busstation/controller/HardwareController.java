@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -39,7 +41,9 @@ public class HardwareController {
         }
 
         // 모두 맞으면 데이터 업데이트
-        renewStationInfoService.renewArrivedStation(hardwareDto.getName(), hardwareDto.getMacAddress(), 1L);
+        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(hardwareDto.getName(),
+                hardwareDto.getMacAddress(), 1L);
+        log.info("버스 도착 시간 = {}", arrivedTime);
     }
 
 
@@ -58,7 +62,9 @@ public class HardwareController {
         }
 
         // 모두 맞으면 데이터 업데이트
-        renewStationInfoService.renewDepartedStation(hardwareDto.getName(), hardwareDto.getMacAddress(), 1L);
+        LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getName(),
+                hardwareDto.getMacAddress(), 1L);
+        log.info("버스 출발 시간 = {}", departedTime);
     }
 
 
