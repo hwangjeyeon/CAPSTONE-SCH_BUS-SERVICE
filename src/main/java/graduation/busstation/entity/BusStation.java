@@ -27,8 +27,9 @@ public class BusStation {
     private String deviceMacAddress;
     @Column(name="STATION_STATUS")
     private String stationStatus;
-    @Column(name="DATE_TIME")
-    @LastModifiedDate
-    private LocalDateTime dateTime;
+    @Column(name="ARRIVED_DATE_TIME")
+    private LocalDateTime arrivedDateTime;
+    @Column(name="DEPARTED_DATE_TIME")
+    private LocalDateTime departedDateTime;
 
 }
