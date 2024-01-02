@@ -18,17 +18,19 @@ public class RenewStationInfoService {
 
     //TODO: UPDATE 쿼리 Querydsl로 짜기
 
-    public void renewArrivedStation(String stationName, String deviceMacAddress, Long id){
+    public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress, Long id){
         BusStation busStation = em.find(BusStation.class, id);
         busStation.setStationStatus("도착");
         busStation.setArrivedDateTime(LocalDateTime.now());
+        return busStation.getArrivedDateTime();
     }
 
 
-    public void renewDepartedStation(String stationName, String deviceMacAddress, Long id){
+    public LocalDateTime renewDepartedStation(String stationName, String deviceMacAddress, Long id){
         BusStation busStation = em.find(BusStation.class, id);
         busStation.setStationStatus("출발");
-        busStation.setArrivedDateTime(LocalDateTime.now());
+        busStation.setDepartedDateTime(LocalDateTime.now());
+        return busStation.getDepartedDateTime();
     }
 
 
