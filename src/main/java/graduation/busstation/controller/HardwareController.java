@@ -42,7 +42,7 @@ public class HardwareController {
         renewStationInfoService.renewArrivedStation(hardwareDto.getName(), hardwareDto.getMacAddress(), 1L);
     }
 
-    //TODO: 버스가 출발한 경우를 업데이트하기 위한 컨트롤러
+
     @PostMapping("/departed/receive/station")
     public void departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증

@@ -16,8 +16,6 @@ public class RenewStationInfoService {
 
     private final EntityManager em;
 
-    //TODO: UPDATE 쿼리 Querydsl로 짜기
-
     public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress, Long id){
         BusStation busStation = em.find(BusStation.class, id);
         busStation.setStationStatus("도착");

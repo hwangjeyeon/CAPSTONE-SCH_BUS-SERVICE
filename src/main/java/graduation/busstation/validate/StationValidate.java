@@ -27,7 +27,7 @@ public class StationValidate {
     public boolean validateStationInfo(String stationName, String stationMacAddress){
 
 
-        //TODO 파라미터가 null로 들어올 경우를 대비하는 코드도 작성해야함
+
 
         //stationName으로 찾기
         List<BusStation> findStationName = stationRepository.findByBusStationName(stationName);
