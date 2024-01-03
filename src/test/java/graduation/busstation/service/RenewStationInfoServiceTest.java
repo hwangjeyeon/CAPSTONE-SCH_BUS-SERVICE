@@ -29,34 +29,32 @@ class RenewStationInfoServiceTest {
     @BeforeEach
     public void before(){
         BusStation busStation = new BusStation();
-        busStation.setBusStationName("후문");
-        busStation.setDeviceMacAddress("FC-AA-14-44-4F-81");
+        busStation.setBusStationName("정문");
+        busStation.setDeviceMacAddress("FC-AA-14-44-4F-80");
         stationRepository.save(busStation);
     }
 
 
     @Test
     public void arrivedRenewServiceTest(){
-        BusStation findStation = stationRepository.findByBusStationName("후문").get(0);
+        BusStation findStation = stationRepository.findByBusStationName("정문").get(0);
         LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(findStation.getBusStationName(),
-                findStation.getDeviceMacAddress(), findStation.getId());
+                findStation.getDeviceMacAddress());
 
-        assertThat(findStation.getBusStationName()).isEqualTo("후문");
-        assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-81");
-        assertThat(findStation.getId()).isEqualTo(1L);
+        assertThat(findStation.getBusStationName()).isEqualTo("정문");
+        assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");
         assertThat(findStation.getStationStatus()).isEqualTo("도착");
         assertThat(findStation.getArrivedDateTime()).isEqualTo(arrivedTime);
     }
 
     @Test
     public void departedRenewServiceTest(){
-        BusStation findStation = stationRepository.findByBusStationName("후문").get(0);
+        BusStation findStation = stationRepository.findByBusStationName("정문").get(0);
         LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(findStation.getBusStationName()
-                , findStation.getDeviceMacAddress(), findStation.getId());
+                , findStation.getDeviceMacAddress());
 
-        assertThat(findStation.getBusStationName()).isEqualTo("후문");
-        assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-81");
-        assertThat(findStation.getId()).isEqualTo(1L);
+        assertThat(findStation.getBusStationName()).isEqualTo("정문");
+        assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");
         assertThat(findStation.getStationStatus()).isEqualTo("출발");
         assertThat(findStation.getDepartedDateTime()).isEqualTo(departedTime);
     }
