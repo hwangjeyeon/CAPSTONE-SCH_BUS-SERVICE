@@ -1,6 +1,7 @@
 package graduation.busstation.service;
 
 import graduation.busstation.entity.BusStation;
+import graduation.busstation.repository.StationRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -15,9 +16,10 @@ public class RenewStationInfoService {
 
 
     private final EntityManager em;
+    private final StationRepository stationRepository;
 
-    public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress, Long id){
-        BusStation busStation = em.find(BusStation.class, id);
+    public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress){
+        BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
         busStation.setStationStatus("도착");
         busStation.setArrivedDateTime(LocalDateTime.now());
         em.flush();
@@ -26,8 +28,8 @@ public class RenewStationInfoService {
     }
 
 
-    public LocalDateTime renewDepartedStation(String stationName, String deviceMacAddress, Long id){
-        BusStation busStation = em.find(BusStation.class, id);
+    public LocalDateTime renewDepartedStation(String stationName, String deviceMacAddress){
+        BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
         busStation.setStationStatus("출발");
         busStation.setDepartedDateTime(LocalDateTime.now());
         em.flush();
