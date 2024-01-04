@@ -19,11 +19,15 @@ public class ResetStationStatusService {
 
     public LocalDateTime resetStatus(){
         List<BusStation> stationList = stationRepository.findAll();
-
+        LocalDateTime lastDeparted = LocalDateTime.now();
         for (BusStation busStation : stationList) {
             busStation.setStationStatus("도착정보없음");
+            // 마지막 정류장 출발시간 기록 안되는 문제 해결
+            if(busStation.getBusStationName().equals("인문대앞")){
+                busStation.setDepartedDateTime(lastDeparted);
+            }
         }
-        return LocalDateTime.now();
+        return lastDeparted;
     }
 
 
