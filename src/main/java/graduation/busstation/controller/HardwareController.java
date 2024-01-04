@@ -61,7 +61,7 @@ public class HardwareController {
             return;
         }
 
-
+        // 최종 정류장 출발 시, 정류장 상태 초기화
         if(hardwareDto.getName().equals("인문대앞")) {
             LocalDateTime resetTime = resetStationStatusService.resetStatus();
             log.info("최종 버스 출발 시간 = {}", resetTime);
