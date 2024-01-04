@@ -2,6 +2,7 @@ package graduation.busstation.controller;
 
 
 import graduation.busstation.dto.HardwareDto;
+import graduation.busstation.service.ResetStationStatusService;
 import graduation.busstation.validate.CarLicenseValidate;
 import graduation.busstation.service.RenewStationInfoService;
 import graduation.busstation.validate.StationValidate;
@@ -20,9 +21,9 @@ public class HardwareController {
     private final StationValidate stationValidate;
     private final CarLicenseValidate carLicenseValidate;
     private final RenewStationInfoService renewStationInfoService;
+    private final ResetStationStatusService resetStationStatusService;
 
 
-    //TODO: 그 다음 정류장에 도착 했을 때, 어떻게 이전 정류장을 탐색해서 정류장 상태를 "도착정보없음"으로 바꿀 것인지
     @PostMapping("/arrived/receive/station")
     public void arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
@@ -60,10 +61,17 @@ public class HardwareController {
             return;
         }
 
-        // 모두 맞으면 데이터 업데이트
-        LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getName(),
-                hardwareDto.getMacAddress());
-        log.info("버스 출발 시간 = {}", departedTime);
+
+        if(hardwareDto.getName().equals("인문대앞")) {
+            LocalDateTime resetTime = resetStationStatusService.resetStatus();
+            log.info("최종 버스 출발 시간 = {}", resetTime);
+        }else{
+            // 모두 맞으면 데이터 업데이트
+            LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getName(),
+                    hardwareDto.getMacAddress());
+            log.info("버스 출발 시간 = {}", departedTime);
+        }
+
     }
 
 
