@@ -8,6 +8,8 @@ import graduation.busstation.service.RenewStationInfoService;
 import graduation.busstation.validate.StationValidate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -25,17 +27,17 @@ public class HardwareController {
 
 
     @PostMapping("/arrived/receive/station")
-    public void arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+    public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getName(),hardwareDto.getMacAddress())){
            log.info("접근 권한이 없습니다!");
-           return;
+           return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
             log.info("등록된 버스가 아닙니다.");
-            return;
+            return new ResponseEntity<>("등록된 버스가 아닙니다.", HttpStatus.FORBIDDEN);
         }
 
         // 모두 맞으면 데이터 업데이트
@@ -43,22 +45,22 @@ public class HardwareController {
                 hardwareDto.getMacAddress());
         log.info("버스 도착 시간 = {}", arrivedTime);
 
-
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
     @PostMapping("/departed/receive/station")
-    public void departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+    public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getName(),hardwareDto.getMacAddress())){
             log.info("접근 권한이 없습니다!");
-            return;
+            return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
             log.info("등록된 버스가 아닙니다.");
-            return;
+            return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
         }
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
@@ -72,6 +74,7 @@ public class HardwareController {
             log.info("버스 출발 시간 = {}", departedTime);
         }
 
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
 
