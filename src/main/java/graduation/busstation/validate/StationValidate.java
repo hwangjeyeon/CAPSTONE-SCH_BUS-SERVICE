@@ -29,8 +29,7 @@ public class StationValidate {
 
         //MacAddress으로 찾기
         List<BusStation> findDeviceMacAddress = stationRepository.findByDeviceMacAddress(stationMacAddress);
-
-        if(findDeviceMacAddress.isEmpty() || findDeviceMacAddress.get(0)
+        if(findDeviceMacAddress.isEmpty() || !findDeviceMacAddress.get(0)
                 .getBusStationName().equals(stationName)){
             return false;
         }

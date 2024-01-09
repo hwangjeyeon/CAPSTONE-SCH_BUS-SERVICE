@@ -31,7 +31,7 @@ class StationValidateTest {
     public void before(){
         BusStation station = new BusStation();
         station.setBusStationName("후문");
-        station.setDeviceMacAddress("FC-AA-14-44-4F-81");
+        station.setDeviceMacAddress("FC-AA-14-44-4F-80");
         station.setArrivedDateTime(LocalDateTime.now());
         station.setDepartedDateTime(LocalDateTime.now());
         station.setStationStatus("도착");
@@ -40,9 +40,9 @@ class StationValidateTest {
 
     @Test
     public void validateTest(){
-        boolean test1 = stationValidate.validateStationInfo("후문", "FC-AA-14-44-4F-81");
+        boolean test1 = stationValidate.validateStationInfo("후문", "FC-AA-14-44-4F-80");
         boolean test2 = stationValidate.validateStationInfo("후문", "FC");
-        boolean test3 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F-81");
+        boolean test3 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F-80");
         boolean test4 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F");
 
         assertThat(test1).isTrue();
