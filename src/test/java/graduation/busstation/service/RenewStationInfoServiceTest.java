@@ -1,5 +1,6 @@
 package graduation.busstation.service;
 
+import graduation.busstation.Status.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
 import jakarta.transaction.Transactional;
@@ -43,7 +44,7 @@ class RenewStationInfoServiceTest {
 
         assertThat(findStation.getBusStationName()).isEqualTo("정문");
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");
-        assertThat(findStation.getStationStatus()).isEqualTo("도착");
+        assertThat(findStation.getStationStatus()).isEqualTo(StationStatus.ARRIVED);
         assertThat(findStation.getArrivedDateTime()).isEqualTo(arrivedTime);
     }
 
@@ -55,7 +56,7 @@ class RenewStationInfoServiceTest {
 
         assertThat(findStation.getBusStationName()).isEqualTo("정문");
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");
-        assertThat(findStation.getStationStatus()).isEqualTo("출발");
+        assertThat(findStation.getStationStatus()).isEqualTo(StationStatus.DEPARTED);
         assertThat(findStation.getDepartedDateTime()).isEqualTo(departedTime);
     }
 

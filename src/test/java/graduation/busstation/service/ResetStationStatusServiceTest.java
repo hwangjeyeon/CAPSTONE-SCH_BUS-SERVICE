@@ -1,5 +1,6 @@
 package graduation.busstation.service;
 
+import graduation.busstation.Status.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
 import org.assertj.core.api.Assertions;
@@ -26,7 +27,7 @@ class ResetStationStatusServiceTest {
         resetStationStatusService.resetStatus();
 
         for (BusStation busStation : stationRepository.findAll()) {
-            assertThat(busStation.getStationStatus()).isEqualTo("도착정보없음");
+            assertThat(busStation.getStationStatus()).isEqualTo(StationStatus.TBD);
         }
     }
 

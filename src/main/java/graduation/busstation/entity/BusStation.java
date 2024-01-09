@@ -1,10 +1,8 @@
 package graduation.busstation.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import graduation.busstation.Status.StationStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
@@ -26,7 +24,8 @@ public class BusStation {
     @Column(name="DEVICE_MAC_ADDRESS")
     private String deviceMacAddress;
     @Column(name="STATION_STATUS")
-    private String stationStatus;
+    @Enumerated(EnumType.STRING)
+    private StationStatus stationStatus;
     @Column(name="ARRIVED_DATE_TIME")
     private LocalDateTime arrivedDateTime;
     @Column(name="DEPARTED_DATE_TIME")

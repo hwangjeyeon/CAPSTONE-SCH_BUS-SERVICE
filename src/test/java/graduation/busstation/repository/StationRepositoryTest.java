@@ -1,6 +1,7 @@
 package graduation.busstation.repository;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
+import graduation.busstation.Status.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.entity.QBusStation;
 import jakarta.persistence.EntityManager;
@@ -35,7 +36,7 @@ class StationRepositoryTest {
         station.setDeviceMacAddress("FC-AA-14-44-4F-81");
         station.setArrivedDateTime(NOW_DATETIME);
         station.setDepartedDateTime(NOW_DATETIME);
-        station.setStationStatus("출발");
+        station.setStationStatus(StationStatus.DEPARTED);
         stationRepository.save(station);
     }
 
@@ -50,7 +51,7 @@ class StationRepositoryTest {
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-81");
         assertThat(findStation.getDepartedDateTime()).isEqualTo(NOW_DATETIME);
         assertThat(findStation.getArrivedDateTime()).isEqualTo(NOW_DATETIME);
-        assertThat(findStation.getStationStatus()).isEqualTo("출발");
+        assertThat(findStation.getStationStatus()).isEqualTo(StationStatus.DEPARTED);
     }
 
 

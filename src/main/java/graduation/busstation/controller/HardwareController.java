@@ -62,13 +62,11 @@ public class HardwareController {
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
         if(hardwareDto.getStationName().equals("인문대앞")) {
-            LocalDateTime resetTime = resetStationStatusService.resetStatus();
-            log.info("최종 버스 출발 시간 = {}", resetTime);
+            log.info("최종 버스 출발 시간 = {}", resetStationStatusService.resetStatus());
         }else{
             // 모두 맞으면 데이터 업데이트
-            LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getStationName(),
-                    hardwareDto.getMacAddress());
-            log.info("버스 출발 시간 = {}", departedTime);
+            log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(hardwareDto.getStationName()
+                    , hardwareDto.getMacAddress()));
         }
 
         return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);

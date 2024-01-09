@@ -1,5 +1,6 @@
 package graduation.busstation.validate;
 
+import graduation.busstation.Status.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
 import graduation.busstation.validate.StationValidate;
@@ -34,7 +35,7 @@ class StationValidateTest {
         station.setDeviceMacAddress("FC-AA-14-44-4F-80");
         station.setArrivedDateTime(LocalDateTime.now());
         station.setDepartedDateTime(LocalDateTime.now());
-        station.setStationStatus("도착");
+        station.setStationStatus(StationStatus.ARRIVED);
         stationRepository.save(station);
     }
 
