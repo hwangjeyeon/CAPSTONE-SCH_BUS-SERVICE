@@ -19,6 +19,7 @@ public class RenewStationInfoService {
     private final StationRepository stationRepository;
 
     public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress){
+        // 이후 stationName에서 deviceMacAddress로 바꿀 예정
         BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
         busStation.setStationStatus("도착");
         busStation.setArrivedDateTime(LocalDateTime.now());
@@ -27,6 +28,7 @@ public class RenewStationInfoService {
 
 
     public LocalDateTime renewDepartedStation(String stationName, String deviceMacAddress){
+        // 이후 stationName에서 deviceMacAddress로 바꿀 예정
         BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
         busStation.setStationStatus("출발");
         busStation.setDepartedDateTime(LocalDateTime.now());

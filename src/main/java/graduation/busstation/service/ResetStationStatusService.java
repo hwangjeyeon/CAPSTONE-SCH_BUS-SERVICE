@@ -19,6 +19,8 @@ public class ResetStationStatusService {
 
     public LocalDateTime resetStatus(){
         List<BusStation> stationList = stationRepository.findAll();
+
+        // 마지막 정류장 출발시간 업데이트 및 로그 반환 목적
         LocalDateTime lastDeparted = LocalDateTime.now();
         for (BusStation busStation : stationList) {
             busStation.setStationStatus("도착정보없음");
