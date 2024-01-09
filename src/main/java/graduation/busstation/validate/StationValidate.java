@@ -27,15 +27,11 @@ public class StationValidate {
     public boolean validateStationInfo(String stationName, String stationMacAddress){
 
 
-
-
-        //stationName으로 찾기
-        List<BusStation> findStationName = stationRepository.findByBusStationName(stationName);
-
         //MacAddress으로 찾기
         List<BusStation> findDeviceMacAddress = stationRepository.findByDeviceMacAddress(stationMacAddress);
 
-        if(findStationName.isEmpty() || findDeviceMacAddress.isEmpty()){
+        if(findDeviceMacAddress.isEmpty() || findDeviceMacAddress.get(0)
+                .getBusStationName().equals(stationName)){
             return false;
         }
 
