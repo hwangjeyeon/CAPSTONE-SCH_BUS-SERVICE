@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class HardwareDto {
 
-    private String name;
+    private String stationName;
     private String macAddress;
     private String license;
 

@@ -26,10 +26,10 @@ public class HardwareController {
     private final ResetStationStatusService resetStationStatusService;
 
 
-    @PostMapping("/arrived/receive/station")
+    @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
-        if(!stationValidate.validateStationInfo(hardwareDto.getName(),hardwareDto.getMacAddress())){
+        if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
            log.info("접근 권한이 없습니다!");
            return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
         }
@@ -41,7 +41,7 @@ public class HardwareController {
         }
 
         // 모두 맞으면 데이터 업데이트
-        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(hardwareDto.getName(),
+        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(hardwareDto.getStationName(),
                 hardwareDto.getMacAddress());
         log.info("버스 도착 시간 = {}", arrivedTime);
 
@@ -49,10 +49,10 @@ public class HardwareController {
     }
 
 
-    @PostMapping("/departed/receive/station")
+    @PatchMapping("/departed/receive/station")
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
-        if(!stationValidate.validateStationInfo(hardwareDto.getName(),hardwareDto.getMacAddress())){
+        if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
             log.info("접근 권한이 없습니다!");
             return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
         }
@@ -64,12 +64,12 @@ public class HardwareController {
         }
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
-        if(hardwareDto.getName().equals("인문대앞")) {
+        if(hardwareDto.getStationName().equals("인문대앞")) {
             LocalDateTime resetTime = resetStationStatusService.resetStatus();
             log.info("최종 버스 출발 시간 = {}", resetTime);
         }else{
             // 모두 맞으면 데이터 업데이트
-            LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getName(),
+            LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(hardwareDto.getStationName(),
                     hardwareDto.getMacAddress());
             log.info("버스 출발 시간 = {}", departedTime);
         }
