@@ -26,18 +26,17 @@ public class HardwareController {
     private final ResetStationStatusService resetStationStatusService;
 
 
+
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
-           log.info("접근 권한이 없습니다!");
-           return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
+            throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
-            log.info("등록된 버스가 아닙니다.");
-            return new ResponseEntity<>("등록된 버스가 아닙니다.", HttpStatus.FORBIDDEN);
+            throw new IllegalArgumentException("미등록 번호판 접근");
         }
 
         // 모두 맞으면 데이터 업데이트
@@ -45,7 +44,7 @@ public class HardwareController {
                 hardwareDto.getMacAddress());
         log.info("버스 도착 시간 = {}", arrivedTime);
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("---버스 도착정보 등록---",HttpStatus.OK);
     }
 
 
@@ -53,14 +52,12 @@ public class HardwareController {
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
-            log.info("접근 권한이 없습니다!");
-            return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
+            throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
-            log.info("등록된 버스가 아닙니다.");
-            return new ResponseEntity<>("접근 권한이 없습니다!", HttpStatus.FORBIDDEN);
+            throw new IllegalArgumentException("미등록 번호판 접근");
         }
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
@@ -74,7 +71,7 @@ public class HardwareController {
             log.info("버스 출발 시간 = {}", departedTime);
         }
 
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
     }
 
 
