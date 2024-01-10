@@ -3,9 +3,11 @@ package graduation.busstation.controller;
 
 import graduation.busstation.dto.HardwareDto;
 import graduation.busstation.service.ResetStationStatusService;
+import graduation.busstation.util.ClientIpUtil;
 import graduation.busstation.validate.CarLicenseValidate;
 import graduation.busstation.service.RenewStationInfoService;
 import graduation.busstation.validate.StationValidate;
+import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,14 +30,19 @@ public class HardwareController {
 
 
     @PatchMapping("/arrived/receive/station")
-    public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+    public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
+
+
+
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
+            ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
+            ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("미등록 번호판 접근");
         }
 
@@ -49,14 +56,18 @@ public class HardwareController {
 
 
     @PatchMapping("/departed/receive/station")
-    public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+    public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
+
+
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
+            ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
 
         // 차량 라이센스 정보가 맞는지 검증
         if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
+            ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("미등록 번호판 접근");
         }
 
