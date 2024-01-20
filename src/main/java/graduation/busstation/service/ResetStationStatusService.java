@@ -1,6 +1,6 @@
 package graduation.busstation.service;
 
-import graduation.busstation.Status.StationStatus;
+import graduation.busstation.enums.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,26 +15,11 @@ import java.util.List;
 @Transactional
 public class ResetStationStatusService {
 
-
+    private final String STATION_NAME = "인문대앞";
     private final StationRepository stationRepository;
 
-    public LocalDateTime resetStatus(){
-        List<BusStation> stationList = stationRepository.findAll();
-
-        // 마지막 정류장 출발시간 업데이트 및 로그 반환 목적
-        LocalDateTime lastDeparted = LocalDateTime.now();
-        for (BusStation busStation : stationList) {
-            busStation.setStationStatus(StationStatus.TBD);
-            // 마지막 정류장 출발시간 기록 안되는 문제 해결
-            if(busStation.getBusStationName().equals("인문대앞")){
-                busStation.setDepartedDateTime(lastDeparted);
-            }
-        }
-        return lastDeparted;
+    public void resetStatus(){
+        stationRepository.bulkStationStatusInit();
     }
-
-
-
-
 
 }
