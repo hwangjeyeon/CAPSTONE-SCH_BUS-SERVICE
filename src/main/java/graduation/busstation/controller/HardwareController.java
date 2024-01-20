@@ -32,8 +32,6 @@ public class HardwareController {
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
 
-
-
         //정류장명,mac주소가 맞는지 검증
         if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
             ClientIpUtil.getRemoteIp(request);
@@ -73,7 +71,9 @@ public class HardwareController {
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
         if(hardwareDto.getStationName().equals("인문대앞")) {
-            log.info("최종 버스 출발 시간 = {}", resetStationStatusService.resetStatus());
+            log.info("최종 버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(
+                    hardwareDto.getStationName(), hardwareDto.getMacAddress()));
+            resetStationStatusService.resetStatus();
         }else{
             // 모두 맞으면 데이터 업데이트
             log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(hardwareDto.getStationName()
