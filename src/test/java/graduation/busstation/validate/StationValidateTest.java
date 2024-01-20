@@ -1,11 +1,8 @@
 package graduation.busstation.validate;
 
-import graduation.busstation.Status.StationStatus;
+import graduation.busstation.enums.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
-import graduation.busstation.validate.StationValidate;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

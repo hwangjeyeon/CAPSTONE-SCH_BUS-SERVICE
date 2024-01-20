@@ -1,12 +1,10 @@
 package graduation.busstation.entity;
 
 
-import graduation.busstation.Status.StationStatus;
+import graduation.busstation.enums.StationStatus;
 import jakarta.persistence.*;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.data.annotation.LastModifiedDate;
 
 import java.time.LocalDateTime;
 

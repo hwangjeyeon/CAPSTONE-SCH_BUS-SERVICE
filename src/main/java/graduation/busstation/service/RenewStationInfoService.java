@@ -1,10 +1,8 @@
 package graduation.busstation.service;
 
-import graduation.busstation.Status.StationStatus;
+import graduation.busstation.enums.StationStatus;
 import graduation.busstation.entity.BusStation;
 import graduation.busstation.repository.StationRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

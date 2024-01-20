@@ -1,4 +1,4 @@
-package graduation.busstation.Status;
+package graduation.busstation.enums;
 
 
 /**

@@ -29,7 +29,7 @@ public class QBusStation extends EntityPathBase<BusStation> {
 
     public final NumberPath<Long> id = createNumber("id", Long.class);
 
-    public final EnumPath<graduation.busstation.Status.StationStatus> stationStatus = createEnum("stationStatus", graduation.busstation.Status.StationStatus.class);
+    public final EnumPath<graduation.busstation.enums.StationStatus> stationStatus = createEnum("stationStatus", graduation.busstation.enums.StationStatus.class);
 
     public QBusStation(String variable) {
         super(BusStation.class, forVariable(variable));
