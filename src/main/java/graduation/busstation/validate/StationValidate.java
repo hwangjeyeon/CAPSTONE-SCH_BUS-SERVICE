@@ -24,17 +24,17 @@ public class StationValidate {
     private final StationRepository stationRepository;
 
     @Transactional
-    public boolean validateStationInfo(String stationName, String stationMacAddress){
+    public BusStation validateStationInfo(String stationName, String stationMacAddress){
 
 
         //MacAddress으로 찾기
         List<BusStation> findDeviceMacAddress = stationRepository.findByDeviceMacAddress(stationMacAddress);
         if(findDeviceMacAddress.isEmpty() || !findDeviceMacAddress.get(0)
                 .getBusStationName().equals(stationName)){
-            return false;
+            return null;
         }
 
-        return true;
+        return findDeviceMacAddress.get(0);
     }
 
 }

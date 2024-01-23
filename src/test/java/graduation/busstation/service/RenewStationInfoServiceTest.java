@@ -37,8 +37,7 @@ class RenewStationInfoServiceTest {
     @Test
     public void arrivedRenewServiceTest(){
         BusStation findStation = stationRepository.findByBusStationName("정문").get(0);
-        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(findStation.getBusStationName(),
-                findStation.getDeviceMacAddress());
+        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(findStation);
 
         assertThat(findStation.getBusStationName()).isEqualTo("정문");
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");
@@ -49,8 +48,7 @@ class RenewStationInfoServiceTest {
     @Test
     public void departedRenewServiceTest(){
         BusStation findStation = stationRepository.findByBusStationName("정문").get(0);
-        LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(findStation.getBusStationName()
-                , findStation.getDeviceMacAddress());
+        LocalDateTime departedTime = renewStationInfoService.renewDepartedStation(findStation);
 
         assertThat(findStation.getBusStationName()).isEqualTo("정문");
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-80");

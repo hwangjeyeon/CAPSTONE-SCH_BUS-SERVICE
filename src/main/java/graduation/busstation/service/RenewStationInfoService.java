@@ -17,21 +17,21 @@ public class RenewStationInfoService {
 
     private final StationRepository stationRepository;
 
-    public LocalDateTime renewArrivedStation(String stationName, String deviceMacAddress){
+    public LocalDateTime renewArrivedStation(BusStation findStation){
         // 이후 stationName에서 deviceMacAddress로 바꿀 예정
-        BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
-        busStation.setStationStatus(StationStatus.ARRIVED);
-        busStation.setArrivedDateTime(LocalDateTime.now());
-        return busStation.getArrivedDateTime();
+
+        findStation.setStationStatus(StationStatus.ARRIVED);
+        findStation.setArrivedDateTime(LocalDateTime.now());
+        return findStation.getArrivedDateTime();
     }
 
 
-    public LocalDateTime renewDepartedStation(String stationName, String deviceMacAddress){
+    public LocalDateTime renewDepartedStation(BusStation findStation){
         // 이후 stationName에서 deviceMacAddress로 바꿀 예정
-        BusStation busStation = stationRepository.findByBusStationName(stationName).get(0);
-        busStation.setStationStatus(StationStatus.DEPARTED);
-        busStation.setDepartedDateTime(LocalDateTime.now());
-        return busStation.getDepartedDateTime();
+
+        findStation.setStationStatus(StationStatus.DEPARTED);
+        findStation.setDepartedDateTime(LocalDateTime.now());
+        return findStation.getDepartedDateTime();
     }
 
 

@@ -2,6 +2,7 @@ package graduation.busstation.controller;
 
 
 import graduation.busstation.dto.HardwareDto;
+import graduation.busstation.entity.BusStation;
 import graduation.busstation.service.ResetStationStatusService;
 import graduation.busstation.util.ClientIpUtil;
 import graduation.busstation.validate.CarLicenseValidate;
@@ -31,9 +32,9 @@ public class HardwareController {
 
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
-
+        BusStation findStation = stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress());
         //정류장명,mac주소가 맞는지 검증
-        if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
+        if(findStation == null){
             ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
@@ -45,8 +46,7 @@ public class HardwareController {
         }
 
         // 모두 맞으면 데이터 업데이트
-        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(hardwareDto.getStationName(),
-                hardwareDto.getMacAddress());
+        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(findStation);
         log.info("버스 도착 시간 = {}", arrivedTime);
 
         return new ResponseEntity<>("---버스 도착정보 등록---",HttpStatus.OK);
@@ -55,10 +55,10 @@ public class HardwareController {
 
     @PatchMapping("/departed/receive/station")
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
-
+        BusStation findStation = stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress());
 
         //정류장명,mac주소가 맞는지 검증
-        if(!stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress())){
+        if(findStation == null){
             ClientIpUtil.getRemoteIp(request);
             throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
         }
@@ -71,13 +71,11 @@ public class HardwareController {
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
         if(hardwareDto.getStationName().equals("인문대앞")) {
-            log.info("최종 버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(
-                    hardwareDto.getStationName(), hardwareDto.getMacAddress()));
+            log.info("최종 버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
             resetStationStatusService.resetStatus();
         }else{
             // 모두 맞으면 데이터 업데이트
-            log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(hardwareDto.getStationName()
-                    , hardwareDto.getMacAddress()));
+            log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
         }
 
         return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
