@@ -8,6 +8,15 @@ package graduation.busstation.enums;
  */
 public enum StationStatus {
 
-    ARRIVED, DEPARTED, TBD;
+    ARRIVED("도착"), DEPARTED("출발"), TBD("도착정보없음");
 
+    private final String message;
+
+    StationStatus(String message) {
+        this.message = message;
+    }
+
+    public String getMessage() {
+        return message;
+    }
 }

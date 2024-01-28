@@ -22,7 +22,7 @@ public class WebPageController {
     @GetMapping("/sch/station/webpage")
     public String busStationWebPageRequest(Model model){
         model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
-        return "index.html";
+        return "webpage.html";
     }
 
 
