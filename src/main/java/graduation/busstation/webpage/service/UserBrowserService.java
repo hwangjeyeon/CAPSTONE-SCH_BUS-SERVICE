@@ -18,6 +18,7 @@ public class UserBrowserService {
 
 
     public String userBrowserCheck(String userAgent){
+        log.info("사용자 접근 브라우저 = {}", userAgent);
         for (String s : mobilePattern) {
             if(userAgent.toUpperCase().contains(s)){
                 return "mobile";

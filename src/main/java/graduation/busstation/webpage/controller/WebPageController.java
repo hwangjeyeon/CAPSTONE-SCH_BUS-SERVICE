@@ -1,5 +1,6 @@
 package graduation.busstation.webpage.controller;
 
+import graduation.busstation.webpage.service.UserBrowserService;
 import graduation.busstation.webpage.template.ViewPageTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -16,27 +17,25 @@ public class WebPageController {
 
 
     private final ViewPageTemplate viewPageTemplate;
+    private final UserBrowserService userBrowserService;
+
+    @GetMapping("/")
+    public String home(){
+        return "redirect:/sch/station/page";
+    }
+
 
 
     @GetMapping("/sch/station/page")
     public String busStationPageRequest(@RequestHeader("user-agent") String userAgent, Model model){
-        String userChannel =
-
+        String userChannel = userBrowserService.userBrowserCheck(userAgent);
         model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
-        return "webpage.html";
-    }
 
-
-    @GetMapping("/sch/station/webpage")
-    public String busStationWebPageRequest(Model model){
-        model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
-        return "webpage.html";
-    }
-
-
-    @GetMapping("/sch/station/mobilepage")
-    public String busStationMobilePageRequest(Model model){
-        model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
+        if(userChannel.equals("mobile")){
+            log.info("모바일 사용자 접근");
+            return "webpage.html";
+        }
+        log.info("웹 사용자 접근");
         return "webpage.html";
     }
 
