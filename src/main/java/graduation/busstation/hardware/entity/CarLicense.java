@@ -1,4 +1,4 @@
-package graduation.busstation.entity;
+package graduation.busstation.hardware.entity;
 
 
 import jakarta.persistence.Entity;

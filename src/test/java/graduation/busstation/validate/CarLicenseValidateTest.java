@@ -1,10 +1,8 @@
 package graduation.busstation.validate;
 
-import graduation.busstation.entity.CarLicense;
-import graduation.busstation.repository.CarLicenseRepository;
-import graduation.busstation.validate.CarLicenseValidate;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import graduation.busstation.hardware.entity.CarLicense;
+import graduation.busstation.hardware.repository.CarLicenseRepository;
+import graduation.busstation.hardware.validate.CarLicenseValidate;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

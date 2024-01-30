@@ -1,4 +1,4 @@
-package graduation.busstation.error;
+package graduation.busstation.hardware.error;
 
 
 import lombok.extern.slf4j.Slf4j;

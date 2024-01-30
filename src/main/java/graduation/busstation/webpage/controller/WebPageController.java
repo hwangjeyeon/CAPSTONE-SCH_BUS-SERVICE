@@ -1,14 +1,12 @@
-package graduation.busstation.controller;
+package graduation.busstation.webpage.controller;
 
-import graduation.busstation.entity.BusStation;
-import graduation.busstation.template.ViewPageTemplate;
+import graduation.busstation.webpage.template.ViewPageTemplate;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
+import org.springframework.web.bind.annotation.RequestHeader;
 
 @Slf4j
 @RequiredArgsConstructor
@@ -18,6 +16,16 @@ public class WebPageController {
 
 
     private final ViewPageTemplate viewPageTemplate;
+
+
+    @GetMapping("/sch/station/page")
+    public String busStationPageRequest(@RequestHeader("user-agent") String userAgent, Model model){
+        String userChannel =
+
+        model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
+        return "webpage.html";
+    }
+
 
     @GetMapping("/sch/station/webpage")
     public String busStationWebPageRequest(Model model){
@@ -29,7 +37,7 @@ public class WebPageController {
     @GetMapping("/sch/station/mobilepage")
     public String busStationMobilePageRequest(Model model){
         model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
-        return "index.html";
+        return "webpage.html";
     }
 
 

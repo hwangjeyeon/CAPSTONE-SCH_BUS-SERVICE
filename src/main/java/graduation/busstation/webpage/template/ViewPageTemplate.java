@@ -1,14 +1,11 @@
-package graduation.busstation.template;
+package graduation.busstation.webpage.template;
 
-import graduation.busstation.entity.BusStation;
-import graduation.busstation.repository.StationRepository;
+import graduation.busstation.hardware.entity.BusStation;
+import graduation.busstation.hardware.repository.StationRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Component;
-import org.springframework.ui.Model;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Slf4j

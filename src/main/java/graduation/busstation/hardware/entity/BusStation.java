@@ -1,7 +1,7 @@
-package graduation.busstation.entity;
+package graduation.busstation.hardware.entity;
 
 
-import graduation.busstation.enums.StationStatus;
+import graduation.busstation.hardware.enums.StationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

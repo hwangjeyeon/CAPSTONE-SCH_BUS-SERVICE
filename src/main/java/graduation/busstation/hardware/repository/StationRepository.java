@@ -1,7 +1,6 @@
-package graduation.busstation.repository;
+package graduation.busstation.hardware.repository;
 
-import graduation.busstation.enums.StationStatus;
-import graduation.busstation.entity.BusStation;
+import graduation.busstation.hardware.entity.BusStation;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

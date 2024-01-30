@@ -1,21 +1,14 @@
-package graduation.busstation.validate;
+package graduation.busstation.hardware.validate;
 
 
-import com.querydsl.jpa.impl.JPAQueryFactory;
-import graduation.busstation.entity.CarLicense;
-import graduation.busstation.entity.QCarLicense;
-import graduation.busstation.repository.CarLicenseRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import graduation.busstation.hardware.entity.CarLicense;
+import graduation.busstation.hardware.repository.CarLicenseRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
 import java.util.Optional;
-
-import static graduation.busstation.entity.QCarLicense.carLicense;
 
 @Service
 @RequiredArgsConstructor

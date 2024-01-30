@@ -1,4 +1,4 @@
-package graduation.busstation.dto;
+package graduation.busstation.hardware.dto;
 
 
 import lombok.Data;

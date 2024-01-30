@@ -1,8 +1,9 @@
 package graduation.busstation.service;
 
-import graduation.busstation.enums.StationStatus;
-import graduation.busstation.entity.BusStation;
-import graduation.busstation.repository.StationRepository;
+import graduation.busstation.hardware.enums.StationStatus;
+import graduation.busstation.hardware.entity.BusStation;
+import graduation.busstation.hardware.service.ResetStationStatusService;
+import graduation.busstation.hardware.repository.StationRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

@@ -1,4 +1,4 @@
-package graduation.busstation.util;
+package graduation.busstation.hardware.util;
 
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;

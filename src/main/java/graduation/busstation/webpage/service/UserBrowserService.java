@@ -1,0 +1,29 @@
+package graduation.busstation.webpage.service;
+
+
+import jakarta.servlet.http.HttpServletRequest;
+import lombok.extern.slf4j.Slf4j;
+import org.aspectj.lang.ProceedingJoinPoint;
+import org.aspectj.lang.annotation.Around;
+import org.springframework.stereotype.Component;
+import org.springframework.web.context.request.RequestContextHolder;
+import org.springframework.web.context.request.ServletRequestAttributes;
+
+import java.util.Optional;
+
+@Component
+@Slf4j
+public class UserBrowserService {
+    private final String[] mobilePattern = {"ANDROID", "TABLET", "IPAD", "MOBILE", "IPHONE"};
+
+
+    public String userBrowserCheck(String userAgent){
+        for (String s : mobilePattern) {
+            if(userAgent.toUpperCase().contains(s)){
+                return "mobile";
+            }
+        }
+        return "web";
+    }
+
+}

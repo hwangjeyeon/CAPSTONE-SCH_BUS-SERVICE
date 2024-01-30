@@ -1,8 +1,9 @@
 package graduation.busstation.service;
 
-import graduation.busstation.enums.StationStatus;
-import graduation.busstation.entity.BusStation;
-import graduation.busstation.repository.StationRepository;
+import graduation.busstation.hardware.enums.StationStatus;
+import graduation.busstation.hardware.entity.BusStation;
+import graduation.busstation.hardware.service.RenewStationInfoService;
+import graduation.busstation.hardware.repository.StationRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;

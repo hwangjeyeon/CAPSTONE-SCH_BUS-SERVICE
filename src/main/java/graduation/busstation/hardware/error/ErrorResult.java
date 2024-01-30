@@ -1,4 +1,4 @@
-package graduation.busstation.error;
+package graduation.busstation.hardware.error;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

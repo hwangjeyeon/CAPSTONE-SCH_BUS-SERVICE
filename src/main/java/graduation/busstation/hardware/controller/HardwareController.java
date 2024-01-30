@@ -1,13 +1,13 @@
-package graduation.busstation.controller;
+package graduation.busstation.hardware.controller;
 
 
-import graduation.busstation.dto.HardwareDto;
-import graduation.busstation.entity.BusStation;
-import graduation.busstation.service.ResetStationStatusService;
-import graduation.busstation.util.ClientIpUtil;
-import graduation.busstation.validate.CarLicenseValidate;
-import graduation.busstation.service.RenewStationInfoService;
-import graduation.busstation.validate.StationValidate;
+import graduation.busstation.hardware.dto.HardwareDto;
+import graduation.busstation.hardware.entity.BusStation;
+import graduation.busstation.hardware.service.ResetStationStatusService;
+import graduation.busstation.hardware.util.ClientIpUtil;
+import graduation.busstation.hardware.validate.CarLicenseValidate;
+import graduation.busstation.hardware.service.RenewStationInfoService;
+import graduation.busstation.hardware.validate.StationValidate;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
