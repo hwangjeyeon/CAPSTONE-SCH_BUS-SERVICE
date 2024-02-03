@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Web 1920 – 1</title>
+<style id="applicationStylesheet" type="text/css">
+	.mediaViewInfo {
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	:root {
+		--web-view-ids: Web_1920__1;
+	}
+	* {
+		margin: 0;
+		padding: 0;
+		box-sizing: border-box;
+		border: none;
+	}
+	a {
+		color: rgba(112,112,112,1);
+  		text-decoration-line: none;
+	}
+	#Web_1920__1 {
+		position: absolute;
+		width: 1920px;
+		height: 1080px;
+		background-color: rgba(255,255,255,1);
+		overflow: hidden;
+		--web-view-name: Web 1920 – 1;
+		--web-view-id: Web_1920__1;
+		--web-scale-on-resize: true;
+		--web-enable-deep-linking: true;
+	}
+	#n_8 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_8 {
+		position: absolute;
+		overflow: visible;
+		width: 1516px;
+		height: 854px;
+		left: 45px;
+		top: 211px;
+	}
+	#n_7 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_7 {
+		position: absolute;
+		overflow: visible;
+		width: 1516px;
+		height: 76px;
+		left: 45px;
+		top: 111px;
+	}
+	#n_1 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_1 {
+		overflow: visible;
+		position: absolute;
+		width: 1610.408px;
+		height: 80.707px;
+		left: 0px;
+		top: 0px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n__ {
+		left: 677px;
+		top: 21px;
+		position: absolute;
+		overflow: visible;
+		width: 259px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 31px;
+		color: rgba(112,112,112,1);
+	}
+	#n_1_n {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_1_n {
+		position: absolute;
+		overflow: visible;
+		width: 239px;
+		height: 240px;
+		left: 102px;
+		top: 463px;
+	}
+	#n_1_n_arrived {
+		fill: rgb(255, 106, 106);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	#n_2_o {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_2_o {
+		position: absolute;
+		overflow: visible;
+		width: 239px;
+		height: 240px;
+		left: 395px;
+		top: 463px;
+	}
+	#n_2_o_arrived {
+		fill: rgb(255, 106, 106);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	#n_3_p {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+
+	.n_3_p {
+		position: absolute;
+		overflow: visible;
+		width: 239px;
+		height: 240px;
+		left: 687px;
+		top: 463px;
+	}
+	#n_3_p_arrived {
+		fill: rgb(255, 106, 106);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	#n_4 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_4 {
+		position: absolute;
+		overflow: visible;
+		width: 238px;
+		height: 240px;
+		left: 980px;
+		top: 463px;
+	}
+	#n_4_arrived {
+		fill: rgb(255, 106, 106);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	#n_5 {
+		fill: rgba(255,255,255,1);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_5 {
+		position: absolute;
+		overflow: visible;
+		width: 239px;
+		height: 240px;
+		left: 1270px;
+		top: 463px;
+	}
+	#n_5_arrived {
+		fill: rgb(255, 106, 106);
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	#n_630_ {
+		left: 156px;
+		top: 734px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(112,112,112,1);
+	}
+	#n_630__t {
+		left: 449px;
+		top: 734px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(112,112,112,1);
+	}
+	#n_630__u {
+		left: 743px;
+		top: 734px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(112,112,112,1);
+	}
+	#n_630__v {
+		left: 1036px;
+		top: 734px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(112,112,112,1);
+	}
+	#n_630__w {
+		left: 1329px;
+		top: 734px;
+		position: absolute;
+		overflow: visible;
+		width: 127px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 24px;
+		color: rgba(112,112,112,1);
+	}
+	#n_1_x {
+		left: 173px;
+		top: 564px;
+		position: absolute;
+		overflow: visible;
+		width: 97px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		color: rgba(112,112,112,1);
+	}
+	#n___y {
+		left: 386px;
+		top: 130px;
+		position: absolute;
+		overflow: visible;
+		width: 259px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 31px;
+		color: rgba(112,112,112,1);
+	}
+	#n___z {
+		left: 1011px;
+		top: 130px;
+		position: absolute;
+		overflow: visible;
+		width: 313px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 31px;
+		color: rgba(112,112,112,1);
+	}
+	#n_2_ {
+		left: 463px;
+		top: 564px;
+		position: absolute;
+		overflow: visible;
+		width: 103px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		color: rgba(112,112,112,1);
+	}
+	#n_3_ {
+		left: 754px;
+		top: 564px;
+		position: absolute;
+		overflow: visible;
+		width: 103px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 30px;
+		color: rgba(112,112,112,1);
+	}
+	#n_4_ {
+		left: 1045px;
+		top: 564px;
+		position: absolute;
+		overflow: visible;
+		width: 107px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 31px;
+		color: rgba(112,112,112,1);
+	}
+	#n_5_ {
+		left: 1337px;
+		top: 564px;
+		position: absolute;
+		overflow: visible;
+		width: 105px;
+		white-space: nowrap;
+		text-align: center;
+		font-family: Apple SD Gothic Neo;
+		font-style: normal;
+		font-weight: bold;
+		font-size: 31px;
+		color: rgba(112,112,112,1);
+	}
+	#n_4_ba {
+		fill: transparent;
+		stroke: rgba(112,112,112,1);
+		stroke-width: 2px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_4_ba {
+		overflow: visible;
+		position: absolute;
+		width: 1167.142px;
+		height: 2px;
+		left: 222.875px;
+		top: 401.671px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#n_5_ba {
+		fill: transparent;
+		stroke: rgba(112,112,112,1);
+		stroke-width: 1px;
+		stroke-linejoin: miter;
+		stroke-linecap: butt;
+		stroke-miterlimit: 4;
+		shape-rendering: auto;
+	}
+	.n_5_ba {
+		overflow: visible;
+		position: absolute;
+		width: 1px;
+		height: 38.491px;
+		left: 874.736px;
+		top: 130.993px;
+		transform: matrix(1,0,0,1,0,0);
+	}
+	#timetable{
+		position: absolute;
+		overflow: visible;
+		width: 800px;
+		height: 900px;
+		left: 345px;
+		top: 250px;
+	}
+
+</style>
+</head>
+<body>
+<div id="Web_1920__1">
+	<svg class="n_8">
+		<rect id="n_8" rx="0" ry="0" x="0" y="0" width="1516" height="854">
+		</rect>
+	</svg>
+	<svg class="n_7">
+		<rect id="n_7" rx="0" ry="0" x="0" y="0" width="1516" height="76">
+		</rect>
+	</svg>
+	<svg class="n_1" viewBox="0 0 1610.408 80.707">
+		<path id="n_1" d="M 0 0 L 1610.408447265625 0 L 1610.408447265625 37.57221984863281 L 1610.408447265625 80.70665740966797 L 0 80.70665740966797 L 0 0 Z">
+		</path>
+	</svg>
+	<div id="n__">
+		<a th:href="@{http://localhost:8080/sch/station/page}"><span>순천향대 실시간 버스</span></a>
+	</div>
+		<div id="n___y">
+			<a th:href="@{http://localhost:8080/sch/station/page}"><span>실시간 도착정보 보기</span></a>
+		</div>
+		<div id="n___z">
+			<a th:href="@{http://localhost:8080/sch/station/timetable}"><span>학내순환버스 시간표 보기</span></a>
+		</div>
+		<img id="timetable" src="/src/2023-2학기 셔틀버스 시간표.png">
+
+		<svg class="n_5_ba" viewBox="0 0 1 38.491">
+			<path id="n_5_ba" d="M 0 0 L 0 38.49086761474609">
+			</path>
+		</svg>
+	</div>
+</div>
+</body>
+</html>

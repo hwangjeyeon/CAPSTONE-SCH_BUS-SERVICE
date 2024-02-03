@@ -39,5 +39,18 @@ public class WebPageController {
         return "webpage.html";
     }
 
+    @GetMapping("/sch/station/timetable")
+    public String busStationTimetablePageRequest(@RequestHeader("user-agent") String userAgent, Model model){
+        String userChannel = userBrowserService.userBrowserCheck(userAgent);
+        model.addAttribute("stationInfo",viewPageTemplate.getPageLists());
+
+        if(userChannel.equals("mobile")){
+            log.info("모바일 사용자 접근");
+            return "webpage-timetable.html";
+        }
+        log.info("웹 사용자 접근");
+        return "webpage-timetable.html";
+    }
+
 
 }
