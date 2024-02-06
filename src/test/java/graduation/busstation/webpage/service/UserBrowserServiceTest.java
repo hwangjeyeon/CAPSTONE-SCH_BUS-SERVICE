@@ -20,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 class UserBrowserServiceTest {
     private final String[] mobilePattern = {"ANDROID", "TABLET", "IPAD", "MOBILE", "IPHONE"};
-    @Spy
+    @InjectMocks
     UserBrowserService userBrowserService;
 
     @DisplayName("모바일 접속 유저 테스트")
@@ -29,6 +29,9 @@ class UserBrowserServiceTest {
         List<String> result = new ArrayList<>();
         for (String s : mobilePattern) {
             result.add(userBrowserService.userBrowserCheck(s));
+        }
+
+        for (String s : result) {
             assertThat(s).isEqualTo("mobile");
         }
     }
