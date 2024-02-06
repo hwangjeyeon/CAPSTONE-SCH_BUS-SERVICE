@@ -29,7 +29,7 @@ class StationValidateTest {
     @BeforeEach
     public void before(){
         BusStation station = new BusStation();
-        station.setBusStationName("후문");
+        station.setBusStationName("옆문");
         station.setDeviceMacAddress("FC-AA-14-44-4F-80");
         station.setArrivedDateTime(LocalDateTime.now());
         station.setDepartedDateTime(LocalDateTime.now());
@@ -39,15 +39,15 @@ class StationValidateTest {
 
     @Test
     public void validateTest(){
-        /*boolean test1 = stationValidate.validateStationInfo("후문", "FC-AA-14-44-4F-80");
-        boolean test2 = stationValidate.validateStationInfo("후문", "FC");
-        boolean test3 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F-80");
-        boolean test4 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F");
+        BusStation test1 = stationValidate.validateStationInfo("옆문", "FC-AA-14-44-4F-80");
+        BusStation test2 = stationValidate.validateStationInfo("옆문", "FC");
+        BusStation test3 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F-80");
+        BusStation test4 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F");
 
-        assertThat(test1).isTrue();
-        assertThat(test2).isFalse();
-        assertThat(test3).isFalse();
-        assertThat(test4).isFalse();*/
+        assertThat(test1).isNotNull();
+        assertThat(test2).isNull();
+        assertThat(test3).isNull();
+        assertThat(test4).isNull();
     }
 
 
