@@ -3,8 +3,8 @@ package graduation.busstation.hardware.controller;
 
 import graduation.busstation.hardware.dto.HardwareDto;
 import graduation.busstation.hardware.entity.BusStation;
-import graduation.busstation.hardware.service.ResetStationStatusService;
-import graduation.busstation.hardware.util.ClientIpUtil;
+import graduation.busstation.hardware.repository.StationRepository;
+import graduation.busstation.hardware.template.ValidateTemplate;
 import graduation.busstation.hardware.validate.CarLicenseValidate;
 import graduation.busstation.hardware.service.RenewStationInfoService;
 import graduation.busstation.hardware.validate.StationValidate;
@@ -15,8 +15,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
-
 @Slf4j
 @RestController
 @RequiredArgsConstructor
@@ -26,59 +24,51 @@ public class HardwareController {
     private final StationValidate stationValidate;
     private final CarLicenseValidate carLicenseValidate;
     private final RenewStationInfoService renewStationInfoService;
-    private final ResetStationStatusService resetStationStatusService;
+    private final ValidateTemplate validateTemplate;
+    private final StationRepository stationRepository;
+    private final String STATION_NAME = "인문대앞";
 
 
 
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
-        BusStation findStation = stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress());
-        //정류장명,mac주소가 맞는지 검증
-        if(findStation == null){
-            ClientIpUtil.getRemoteIp(request);
-            throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
-        }
+        BusStation findStation = validateTemplate.validateTemplate(
+                stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress()),
+                carLicenseValidate.validateCarLicense(hardwareDto.getLicense()),
+                request);
 
-        // 차량 라이센스 정보가 맞는지 검증
-        if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
-            ClientIpUtil.getRemoteIp(request);
-            throw new IllegalArgumentException("미등록 번호판 접근");
-        }
 
-        // 모두 맞으면 데이터 업데이트
-        LocalDateTime arrivedTime = renewStationInfoService.renewArrivedStation(findStation);
-        log.info("버스 도착 시간 = {}", arrivedTime);
-
+        log.info("버스 도착 시간 = {}", renewStationInfoService.renewArrivedStation(findStation));
         return new ResponseEntity<>("---버스 도착정보 등록---",HttpStatus.OK);
     }
 
 
     @PatchMapping("/departed/receive/station")
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto, HttpServletRequest request){
-        BusStation findStation = stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress());
-
-        //정류장명,mac주소가 맞는지 검증
-        if(findStation == null){
-            ClientIpUtil.getRemoteIp(request);
-            throw new IllegalArgumentException("잘못된 정류장/MAC 주소 접근");
-        }
-
-        // 차량 라이센스 정보가 맞는지 검증
-        if(!carLicenseValidate.validateCarLicense(hardwareDto.getLicense())){
-            ClientIpUtil.getRemoteIp(request);
-            throw new IllegalArgumentException("미등록 번호판 접근");
-        }
+        BusStation findStation = validateTemplate.validateTemplate(
+                stationValidate.validateStationInfo(hardwareDto.getStationName(),hardwareDto.getMacAddress()),
+                carLicenseValidate.validateCarLicense(hardwareDto.getLicense()),
+                request);
 
         // 최종 정류장 출발 시, 정류장 상태 초기화
+        stationNameCheck(hardwareDto, findStation);
+
+        return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
+    }
+
+    private void stationNameCheck(HardwareDto hardwareDto, BusStation findStation) {
         if(hardwareDto.getStationName().equals("인문대앞")) {
             log.info("최종 버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
-            resetStationStatusService.resetStatus();
+            resetStatus();
         }else{
             // 모두 맞으면 데이터 업데이트
             log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
         }
+    }
 
-        return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
+
+    public void resetStatus(){
+        stationRepository.bulkStationStatusInit();
     }
 
 
