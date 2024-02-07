@@ -34,6 +34,10 @@ public class RenewStationInfoService {
         return findStation.getDepartedDateTime();
     }
 
-
+    public LocalDateTime lastDepartedStation(BusStation findStation){
+        findStation.setDepartedDateTime(LocalDateTime.now());
+        stationRepository.bulkStationStatusInit();
+        return findStation.getDepartedDateTime();
+    }
 
 }

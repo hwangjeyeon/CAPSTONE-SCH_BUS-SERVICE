@@ -13,6 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
 @Slf4j
@@ -56,19 +57,14 @@ public class HardwareController {
         return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
     }
 
+
     private void stationNameCheck(HardwareDto hardwareDto, BusStation findStation) {
         if(hardwareDto.getStationName().equals("인문대앞")) {
-            log.info("최종 버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
-            resetStatus();
+            log.info("최종 버스 출발 시간 = {}", renewStationInfoService.lastDepartedStation(findStation));
         }else{
             // 모두 맞으면 데이터 업데이트
             log.info("버스 출발 시간 = {}", renewStationInfoService.renewDepartedStation(findStation));
         }
-    }
-
-
-    public void resetStatus(){
-        stationRepository.bulkStationStatusInit();
     }
 
 
