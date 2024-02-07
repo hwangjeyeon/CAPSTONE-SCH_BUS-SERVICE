@@ -11,14 +11,9 @@ import java.util.List;
 
 @Component
 @Slf4j
-@RequiredArgsConstructor
 public class BrowserReturnTemplate {
 
-    private final StationRepository stationRepository;
-
-    public String getBrowserPage(String userBrowser, Model model){
-        model.addAttribute("stationInfo",getPageLists());
-
+    public String getBrowserPage(String userBrowser){
         if(userBrowser.equals("mobile")){
             log.info("모바일 사용자 접근");
             return "webpage.html";
@@ -27,8 +22,8 @@ public class BrowserReturnTemplate {
         return "webpage.html";
     }
 
-    public String getBrowserTimetablePage(String userBrowser, Model model){
-        model.addAttribute("stationInfo",getPageLists());
+    public String getBrowserTimetablePage(String userBrowser){
+
 
         if(userBrowser.equals("mobile")){
             log.info("모바일 사용자 접근");
@@ -39,8 +34,6 @@ public class BrowserReturnTemplate {
     }
 
 
-    public List<BusStation> getPageLists(){
-        return stationRepository.findAll();
-    }
+
 
 }
