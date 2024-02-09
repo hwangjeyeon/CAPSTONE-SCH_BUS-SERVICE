@@ -2,6 +2,52 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.0'
 	id 'io.spring.dependency-management' version '1.1.4'
+	id 'jacoco'
+}
+
+jacoco {
+	toolVersion = '0.8.11'
+}
+
+jacocoTestReport{
+	afterEvaluate{
+		classDirectories.setFrom(
+				files(classDirectories.files.collect{
+					fileTree(dir: it, excludes: [
+					        "**/*Application*",
+							"**/*Config*",
+							"**/*Dto*",
+							"**/*Interceptor*",
+							"**/*Exception*",
+							"**/*Error*",
+							"**/*Q*"
+					])
+				})
+		)
+	}
+}
+
+jacocoTestCoverageVerification{
+	violationRules {
+
+		rule{
+			element = 'CLASS'
+			enabled = true
+
+			excludes = [
+					"**.*Application*",
+					"**.*Config*",
+					"**.*Dto*",
+					"**.*Request",
+					"**.*Response",
+					"**.*Interceptor*",
+					"**.*Exception",
+					"**.*Q*"
+			]
+		}
+
+
+	}
 }
 
 group = 'graduation'
@@ -47,4 +93,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+	finalizedBy 'jacocoTestReport'
+}
+
+tasks.withType(Test) {
+	jacoco.includeNoLocationClasses = true
+	jacoco.excludes = ['jdk.internal.*']
+}
+
+tasks.withType(JavaCompile){
+	options.encoding = "UTF-8"
 }
