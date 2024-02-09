@@ -12,12 +12,11 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ExceptionController {
 
     @ExceptionHandler
-    public ResponseEntity<ErrorResult> unauthorizedExceptionHandle(IllegalArgumentException e){
+    public ResponseEntity<ErrorResult> unauthorizedExceptionHandler(IllegalArgumentException e){
         log.error("미등록 사용자 접근 ",e);
         ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
         return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
-
 
 
 }
