@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 @Slf4j
 @RestControllerAdvice
-public class ApiExceptionV2Controller {
+public class ExceptionController {
 
     @ExceptionHandler
     public ResponseEntity<ErrorResult> unauthorizedExceptionHandle(IllegalArgumentException e){
@@ -17,5 +17,7 @@ public class ApiExceptionV2Controller {
         ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
         return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
+
+
 
 }
