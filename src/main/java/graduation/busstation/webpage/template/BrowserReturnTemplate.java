@@ -16,7 +16,7 @@ public class BrowserReturnTemplate {
     public String getBrowserPage(String userBrowser){
         if(userBrowser.equals("mobile")){
             log.info("모바일 사용자 접근");
-            return "webpage.html";
+            return "mobilepage.html";
         }
         log.info("웹 사용자 접근");
         return "webpage.html";
@@ -27,7 +27,7 @@ public class BrowserReturnTemplate {
 
         if(userBrowser.equals("mobile")){
             log.info("모바일 사용자 접근");
-            return "webpage-timetable.html";
+            return "mobilepage-timetable.html";
         }
         log.info("웹 사용자 접근");
         return "webpage-timetable.html";
