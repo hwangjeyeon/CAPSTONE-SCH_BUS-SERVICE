@@ -1,7 +1,7 @@
 package graduation.busstation.validate;
 
-import graduation.busstation.hardware.enums.StationStatus;
 import graduation.busstation.hardware.entity.BusStation;
+import graduation.busstation.hardware.enums.StationStatus;
 import graduation.busstation.hardware.validate.StationValidate;
 import graduation.busstation.hardware.repository.StationRepository;
 import org.junit.jupiter.api.BeforeEach;

@@ -17,7 +17,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
-class HardwareControllerTest {
+class HardwareControllerDevTest {
     @Autowired
     ObjectMapper objectMapper;
 

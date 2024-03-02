@@ -4,22 +4,25 @@ package graduation.busstation.hardware.controller;
 import graduation.busstation.hardware.dto.HardwareDto;
 import graduation.busstation.hardware.entity.BusStation;
 import graduation.busstation.hardware.repository.StationRepository;
+import graduation.busstation.hardware.service.RenewStationInfoService;
 import graduation.busstation.hardware.template.ValidateTemplate;
 import graduation.busstation.hardware.validate.CarLicenseValidate;
-import graduation.busstation.hardware.service.RenewStationInfoService;
 import graduation.busstation.hardware.validate.StationValidate;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
 
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-public class HardwareController {
+@Profile("prod")
+public class HardwareControllerProd {
 
 
     private final StationValidate stationValidate;
@@ -56,10 +59,8 @@ public class HardwareController {
 
         return new ResponseEntity<>("---버스 출발정보 등록---",HttpStatus.OK);
     }
-
-
     private void stationNameCheck(HardwareDto hardwareDto, BusStation findStation) {
-        if(hardwareDto.getStationName().equals("인문대앞")) {
+        if(hardwareDto.getStationName().equals("인문사회과학대학 앞 정류장")) {
             log.info("최종 버스 출발 시간 = {}", renewStationInfoService.lastDepartedStation(findStation));
         }else{
             // 모두 맞으면 데이터 업데이트
