@@ -5,16 +5,18 @@ import graduation.busstation.hardware.enums.StationStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Profile;
 
 import java.time.LocalDateTime;
 
 @Entity
 @Getter @Setter
+@Table(name = "BUS_STATION")
 public class BusStation {
 
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="BUS_STATION_NAME")
