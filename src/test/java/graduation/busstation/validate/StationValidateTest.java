@@ -8,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
@@ -17,6 +18,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 @Transactional
+@ActiveProfiles("dev")
 class StationValidateTest {
 
 
@@ -26,20 +28,10 @@ class StationValidateTest {
     @Autowired
     StationValidate stationValidate;
 
-    @BeforeEach
-    public void before(){
-        BusStation station = new BusStation();
-        station.setBusStationName("옆문");
-        station.setDeviceMacAddress("FC-AA-14-44-4F-80");
-        station.setArrivedDateTime(LocalDateTime.now());
-        station.setDepartedDateTime(LocalDateTime.now());
-        station.setStationStatus(StationStatus.ARRIVED);
-        stationRepository.save(station);
-    }
 
     @Test
     public void validateTest(){
-        BusStation test1 = stationValidate.validateStationInfo("옆문", "FC-AA-14-44-4F-80");
+        BusStation test1 = stationValidate.validateStationInfo("후문", "FC-AA-14-44-4F-81");
         BusStation test2 = stationValidate.validateStationInfo("옆문", "FC");
         BusStation test3 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F-80");
         BusStation test4 = stationValidate.validateStationInfo("정문", "FC-AA-14-44-4F");
