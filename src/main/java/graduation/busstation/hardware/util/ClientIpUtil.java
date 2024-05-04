@@ -3,6 +3,11 @@ package graduation.busstation.hardware.util;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 
+/**
+ * ClientIpUtil is deprecated
+ *
+ */
+
 @Slf4j
 public class ClientIpUtil {
 
