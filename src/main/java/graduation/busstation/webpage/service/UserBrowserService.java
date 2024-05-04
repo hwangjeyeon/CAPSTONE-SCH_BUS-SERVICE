@@ -14,7 +14,7 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class UserBrowserService {
-    private final String[] mobilePattern = {"ANDROID", "TABLET", "IPAD", "MOBILE", "IPHONE"};
+    private final String[] mobilePattern = {"ANDROID", "MOBILE", "IPHONE", "IOS"};
 
 
     public String userBrowserCheck(String userAgent){
