@@ -27,6 +27,12 @@ out/
 !**/src/test/**/out/
 *.yml
 application.yml
+src/main/java/graduation/busstation/hardware/controller/HardwareControllerProd.java
+src/main/resources
+src/main/generated
+/script_docker/
+Dockerfile
+
 
 ### NetBeans ###
 /nbproject/private/
