@@ -2,8 +2,6 @@ package graduation.busstation.hardware.template;
 
 
 import graduation.busstation.hardware.entity.BusStation;
-import graduation.busstation.hardware.util.ClientIpUtil;
-import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class ValidateTemplate {
 
 
-    public BusStation validateTemplate(BusStation findStation, Boolean carLicenseValidate, HttpServletRequest request){
+    public BusStation validateTemplate(BusStation findStation, Boolean carLicenseValidate){
 
         //정류장명,mac주소가 맞는지 검증
         if(findStation == null){

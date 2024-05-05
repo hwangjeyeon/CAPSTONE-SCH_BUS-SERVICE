@@ -29,7 +29,7 @@ class ValidateTemplateTest {
         HttpServletRequest request = new MockHttpServletRequest();
 
         assertThatThrownBy(
-                () -> validateTemplate.validateTemplate(null, true, request))
+                () -> validateTemplate.validateTemplate(null, true))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -40,7 +40,7 @@ class ValidateTemplateTest {
         HttpServletRequest request = new MockHttpServletRequest();
 
         assertThatThrownBy(
-                () -> validateTemplate.validateTemplate(new BusStation(), false, request))
+                () -> validateTemplate.validateTemplate(new BusStation(), false))
                 .isInstanceOf(IllegalArgumentException.class);
     }
 
@@ -52,7 +52,7 @@ class ValidateTemplateTest {
         busStation = new BusStation();
         busStation.setId(1L);
 
-        BusStation findBusStation = validateTemplate.validateTemplate(busStation, true, request);
+        BusStation findBusStation = validateTemplate.validateTemplate(busStation, true);
 
         assertThat(findBusStation).isEqualTo(busStation);
         assertThat(findBusStation.getId()).isEqualTo(busStation.getId());
