@@ -34,6 +34,7 @@ public class WebPageController {
     @GetMapping("/sch/station/page")
     public String busStationPageRequest(@RequestHeader("user-agent") String userAgent, Model model){
         model.addAttribute("stationInfo",getPageLists());
+        log.info("실시간 도착정보 페이지 요청");
         return browserReturnTemplate.getBrowserPage(
                 userBrowserService.userBrowserCheck(userAgent));
     }
@@ -41,6 +42,7 @@ public class WebPageController {
     @GetMapping("/sch/station/timetable")
     public String busStationTimetablePageRequest(@RequestHeader("user-agent") String userAgent, Model model){
         model.addAttribute("stationInfo",getPageLists());
+        log.info("학내순환버스 시간표 페이지 요청");
         return browserReturnTemplate.getBrowserTimetablePage(
                 userBrowserService.userBrowserCheck(userAgent));
     }
