@@ -4,6 +4,7 @@ package graduation.busstation.hardware.controller;
 import graduation.busstation.hardware.dto.HardwareDto;
 import graduation.busstation.hardware.entity.BusStation;
 import graduation.busstation.hardware.template.ValidateTemplate;
+import graduation.busstation.hardware.util.SecureUtil;
 import graduation.busstation.hardware.validate.CarLicenseValidate;
 import graduation.busstation.hardware.service.RenewStationInfoService;
 import graduation.busstation.hardware.validate.StationValidate;
@@ -32,6 +33,11 @@ public class HardwareControllerDev {
 
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+        // 보안 정보가 맞는지 검증
+        if(!new SecureUtil().check(hardwareDto.getKey())){
+            throw new IllegalArgumentException("검증 정보 미일치 사용자 접근");
+        }
+
         BusStation findStation = validateTemplate.validateTemplate(
                 stationValidate.validateStationInfo(hardwareDto.getStationName(),
                         hardwareDto.getMacAddress()),
@@ -45,6 +51,11 @@ public class HardwareControllerDev {
 
     @PatchMapping("/departed/receive/station")
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto){
+        // 보안 정보가 맞는지 검증
+        if(!new SecureUtil().check(hardwareDto.getKey())){
+            throw new IllegalArgumentException("검증 정보 미일치 사용자 접근");
+        }
+
         BusStation findStation = validateTemplate.validateTemplate(
                 stationValidate.validateStationInfo(hardwareDto.getStationName(),
                         hardwareDto.getMacAddress()),

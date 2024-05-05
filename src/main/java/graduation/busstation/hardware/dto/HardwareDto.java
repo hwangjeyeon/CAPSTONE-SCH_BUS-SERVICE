@@ -9,6 +9,6 @@ public class HardwareDto {
     private String stationName;
     private String macAddress;
     private String license;
-
+    private String key;
 
 }
