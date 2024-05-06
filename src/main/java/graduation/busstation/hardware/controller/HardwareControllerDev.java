@@ -44,7 +44,7 @@ public class HardwareControllerDev {
                 carLicenseValidate.validateCarLicense(hardwareDto.getLicense()));
 
 
-        log.info("버스 도착 시간 = {}", renewStationInfoService.renewArrivedStation(findStation));
+        log.info("버스 도착 시간 = {}", DATE_FORMAT.format(renewStationInfoService.renewArrivedStation(findStation)));
         return new ResponseEntity<>("---버스 도착정보 등록---",HttpStatus.OK);
     }
 

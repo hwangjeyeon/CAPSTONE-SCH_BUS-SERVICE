@@ -19,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class UserBrowserServiceTest {
-    private final String[] mobilePattern = {"ANDROID", "TABLET", "IPAD", "MOBILE", "IPHONE"};
+    private final String[] mobilePattern = {"ANDROID", "IOS", "MOBILE", "IPHONE"};
     @InjectMocks
     UserBrowserService userBrowserService;
 
