@@ -34,7 +34,6 @@ public class HardwareControllerDev {
 
     @PatchMapping("/arrived/receive/station")
     public ResponseEntity<String> arrivedDataReceiveStation(@RequestBody HardwareDto hardwareDto) throws Exception {
-        hardwareDto.setMacAddress(decryptAES256(hardwareDto.getMacAddress()).toUpperCase());
 
         BusStation findStation = validateTemplate.validateTemplate(
                 stationValidate.validateStationInfo(hardwareDto.getStationName(),
@@ -49,7 +48,6 @@ public class HardwareControllerDev {
 
     @PatchMapping("/departed/receive/station")
     public ResponseEntity<String> departedDataReceiveStation(@RequestBody HardwareDto hardwareDto) throws Exception {
-        hardwareDto.setMacAddress(decryptAES256(hardwareDto.getMacAddress()).toUpperCase());
 
         BusStation findStation = validateTemplate.validateTemplate(
                 stationValidate.validateStationInfo(hardwareDto.getStationName(),
