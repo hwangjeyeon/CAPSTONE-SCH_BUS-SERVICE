@@ -12,20 +12,24 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.resource.NoResourceFoundException;
 
+import javax.crypto.IllegalBlockSizeException;
+
 @Slf4j
 @RestControllerAdvice
 public class ExceptionController {
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public ResponseEntity<ErrorResult> unauthorizedExceptionHandler(IllegalArgumentException e){
-        log.error("미등록 사용자 접근, 검증 실패 이유 = {}", e.getMessage());
+    @ExceptionHandler({IllegalArgumentException.class, IllegalBlockSizeException.class})
+    public ResponseEntity<ErrorResult> unauthorizedExceptionHandler(){
+        log.error("미등록 사용자 접근, 검증 실패");
         ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
         return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(HttpMessageNotReadableException.class)
-    public void parsingExceptionHandler(){
+    public ResponseEntity<ErrorResult> parsingExceptionHandler(HttpMessageNotReadableException e){
         log.error("잘못된 JSON 형식 전송");
+        ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
+        return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(NoResourceFoundException.class)
