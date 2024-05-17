@@ -61,7 +61,7 @@ class HardwareControllerDevTest {
     @Test
     void lastDepartedControllerTest() throws Exception{
         Map<String, String> input = new HashMap<>();
-        input.put("stationName","인문대앞");
+        input.put("stationName","정문");
         input.put("macAddress", "FC-AA-14-44-4F-85");
         input.put("license","12가4519");
 
