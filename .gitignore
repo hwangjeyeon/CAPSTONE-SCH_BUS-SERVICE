@@ -34,6 +34,7 @@ src/main/generated
 Dockerfile
 src/main/java/graduation/busstation/hardware/util/SecureUtil.java
 *.env
+*Config.java
 
 
 ### NetBeans ###
