@@ -18,9 +18,9 @@ import javax.crypto.IllegalBlockSizeException;
 @RestControllerAdvice
 public class ExceptionController {
 
-    @ExceptionHandler({IllegalArgumentException.class, IllegalBlockSizeException.class})
-    public ResponseEntity<ErrorResult> unauthorizedExceptionHandler(){
-        log.error("미등록 사용자 접근, 검증 실패");
+    @ExceptionHandler({IllegalArgumentException.class})
+    public ResponseEntity<ErrorResult> unauthorizedExceptionHandler(IllegalArgumentException e){
+        log.error("미등록 사용자 접근, 검증 실패 이유 = {}", e.getMessage());
         ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
         return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
@@ -31,6 +31,14 @@ public class ExceptionController {
         ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
         return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(IllegalBlockSizeException.class)
+    public ResponseEntity<ErrorResult> illegalEncryptedExceptionHandler(){
+        log.info("잘못된 형식의 함호문 전송");
+        ErrorResult errorResult = new ErrorResult("unauthorized","접근 권한이 없습니다.");
+        return new ResponseEntity<>(errorResult, HttpStatus.FORBIDDEN);
+    }
+
 
     @ExceptionHandler(NoResourceFoundException.class)
     public void noResourceExceptionHandler(NoResourceFoundException e) throws NoResourceFoundException{
