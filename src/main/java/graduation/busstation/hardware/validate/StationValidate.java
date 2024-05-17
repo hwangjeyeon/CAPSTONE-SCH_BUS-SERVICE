@@ -15,7 +15,7 @@ public class StationValidate {
 
     private final StationRepository stationRepository;
 
-    @Transactional
+
     public BusStation validateStationInfo(String stationName, String stationMacAddress){
 
 

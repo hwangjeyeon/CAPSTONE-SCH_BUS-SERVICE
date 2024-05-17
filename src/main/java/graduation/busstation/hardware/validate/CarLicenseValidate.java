@@ -16,7 +16,7 @@ public class CarLicenseValidate {
 
     private final CarLicenseRepository carLicenseRepository;
 
-    @Transactional
+
     public boolean validateCarLicense(String license){
         Optional<CarLicense> findLicense = carLicenseRepository.findById(license);
         if(findLicense.isEmpty()){
