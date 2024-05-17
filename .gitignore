@@ -33,6 +33,7 @@ src/main/generated
 /script_docker/
 Dockerfile
 src/main/java/graduation/busstation/hardware/util/SecureUtil.java
+*.env
 
 
 ### NetBeans ###
