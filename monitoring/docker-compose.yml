@@ -1,0 +1,46 @@
+version: "3.9"
+
+services:
+
+  prometheus-webpage:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - C:\Users\kingp\OneDrive\desktop\prometheus-2.49.1.windows-amd64/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    restart: always
+    networks:
+      - monitoring
+
+  prometheus-hardware:
+    image: prom/prometheus
+    ports:
+      - "9091:9090"
+    volumes:
+      - C:\Users\kingp\OneDrive\desktop\prometheus-2.49.1.windows-amd64/hardware/prometheus.yml:/etc/prometheus/hardware/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/hardware/prometheus.yml'
+    restart: always
+    networks:
+      - monitoring
+
+  
+  grafana:
+    image: "grafana/grafana"
+    ports:
+      - "13030:3000"
+    volumes:
+      - ./grafana-volume:/var/lib/grafana
+    restart: always
+    depends_on:
+      - prometheus-webpage
+      - prometheus-hardware
+    privileged: true
+    networks:
+      - monitoring
+
+networks:
+  monitoring:
+    driver: bridge
