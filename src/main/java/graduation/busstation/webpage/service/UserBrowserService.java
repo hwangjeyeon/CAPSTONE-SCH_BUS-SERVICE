@@ -14,13 +14,13 @@ import java.util.Optional;
 @Component
 @Slf4j
 public class UserBrowserService {
-    private final String[] mobilePattern = {"ANDROID", "MOBILE", "IPHONE", "IOS"};
+    private final String[] mobilePattern = {"MOBILE"};
 
 
     public String userBrowserCheck(String userAgent){
         log.info("사용자 접근 브라우저 = {}", userAgent);
         for (String s : mobilePattern) {
-            if(userAgent.toUpperCase().contains(s)){
+            if(userAgent.toUpperCase().contains(s) && !userAgent.toUpperCase().contains("IPAD")){
                 return "mobile";
             }
         }
