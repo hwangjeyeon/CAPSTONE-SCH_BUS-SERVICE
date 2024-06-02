@@ -65,10 +65,9 @@
 - AWS Route53으로 미리 가비아에서 구매해둔 도메인명과 매칭시켜서 해당 도메인 명으로 접속 가능하도록 설정
 
 ## 최종 배포 서버
-- 도메인명: http://www.sch-busstation.store
+- 도메인명: www.sch-busstation.store
 - 도착/출발 정보 페이지: http://www.sch-busstation.store/sch/station/page
 - 시간표 페이지: http://www.sch-busstation.store/sch/station/timetable
-
 
 ## 기타: 
 - 세부 기능과 최적화 과정 등에 관한 내용은 개인 블로그에 업로드할 예정
