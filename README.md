@@ -36,10 +36,10 @@
 - AWS VPC
 
 ### 스택 정리
-<img src="Backend Stack.png">
+<img src="image/Backend Stack.png">
 
 ## 백엔드 서비스 아키텍처
-<img src="Backend Architecture.png">
+<img src="image/Backend Architecture.png">
 
 ## 서버 기능
 ### 하드웨어 담당 서버
@@ -64,11 +64,11 @@
 - AWS VPC로 지정된 포트인 80번 포트로만 서버 EC2에 접속하도록 인바운드 규칙 설정
 - AWS Route53으로 미리 가비아에서 구매해둔 도메인명과 매칭시켜서 해당 도메인 명으로 접속 가능하도록 설정
 
-## 최종 배포 서버
+## 최종 배포 서버 (비용 문제로 현재 삭제)
 - 도메인명: www.sch-busstation.store
 - 도착/출발 정보 페이지: http://www.sch-busstation.store/sch/station/page
 - 시간표 페이지: http://www.sch-busstation.store/sch/station/timetable
-(비용 문제로 현재 삭제)
+
 
 ## 기타: 
 - 세부 기능과 최적화 과정 등에 관한 내용은 개인 블로그에 업로드할 예정
