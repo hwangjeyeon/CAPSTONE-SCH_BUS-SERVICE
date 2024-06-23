@@ -68,6 +68,7 @@
 - 도메인명: www.sch-busstation.store
 - 도착/출발 정보 페이지: http://www.sch-busstation.store/sch/station/page
 - 시간표 페이지: http://www.sch-busstation.store/sch/station/timetable
+(비용 문제로 현재 삭제)
 
 ## 기타: 
 - 세부 기능과 최적화 과정 등에 관한 내용은 개인 블로그에 업로드할 예정
