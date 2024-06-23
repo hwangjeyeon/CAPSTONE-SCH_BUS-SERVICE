@@ -39,7 +39,7 @@
 <img src="image/Backend Stack.png">
 
 ## 백엔드 서비스 아키텍처
-<img src="image/Backend Architecture.png">
+<img src="image/(Back-end) SERVICE ARCHITECTURE.png">
 
 ## 서버 기능
 ### 하드웨어 담당 서버
