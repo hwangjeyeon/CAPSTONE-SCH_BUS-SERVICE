@@ -14,11 +14,11 @@ import org.springframework.test.context.ActiveProfiles;
 
 import java.time.LocalDateTime;
 
+import static graduation.busstation.hardware.enums.StationStatus.DEPARTED;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @Slf4j
 @SpringBootTest
-@Transactional
 @ActiveProfiles("dev")
 class RenewStationInfoServiceTest {
 
@@ -47,7 +47,7 @@ class RenewStationInfoServiceTest {
 
         assertThat(findStation.getBusStationName()).isEqualTo("후문");
         assertThat(findStation.getDeviceMacAddress()).isEqualTo("FC-AA-14-44-4F-81");
-        assertThat(findStation.getStationStatus()).isEqualTo(StationStatus.DEPARTED);
+        assertThat(findStation.getStationStatus()).isEqualTo(DEPARTED);
         assertThat(findStation.getDepartedDateTime()).isEqualTo(departedTime);
     }
 

@@ -11,33 +11,39 @@ import java.time.LocalDateTime;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
 public class RenewStationInfoService {
 
 
     private final StationRepository stationRepository;
 
+    @Transactional
     public LocalDateTime renewArrivedStation(BusStation findStation){
         // 이후 stationName에서 deviceMacAddress로 바꿀 예정
 
-        findStation.setStationStatus(StationStatus.ARRIVED);
-        findStation.setArrivedDateTime(LocalDateTime.now());
+        findStation.setArrivedAndStatus(LocalDateTime.now(), StationStatus.ARRIVED);
         return findStation.getArrivedDateTime();
     }
 
-
+    @Transactional
     public LocalDateTime renewDepartedStation(BusStation findStation){
         // 이후 stationName에서 deviceMacAddress로 바꿀 예정
 
-        findStation.setStationStatus(StationStatus.DEPARTED);
-        findStation.setDepartedDateTime(LocalDateTime.now());
+        findStation.setDepartedAndStatus(LocalDateTime.now(), StationStatus.DEPARTED);
         return findStation.getDepartedDateTime();
     }
 
+    @Transactional
     public LocalDateTime lastDepartedStation(BusStation findStation){
-        findStation.setDepartedDateTime(LocalDateTime.now());
         stationRepository.bulkStationStatusInit();
+
         return findStation.getDepartedDateTime();
+    }
+
+    @Transactional
+    public LocalDateTime firstArrivedStation(BusStation findStation){
+        stationRepository.lastStationStatusInit();
+
+        return findStation.getArrivedDateTime();
     }
 
 }

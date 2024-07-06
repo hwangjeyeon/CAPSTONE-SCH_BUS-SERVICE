@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 import java.time.LocalDateTime;
 
 @Entity
-@Getter @Setter
+@Getter
 @Table(name = "BUS_STATION")
 public class BusStation {
 
@@ -30,5 +30,15 @@ public class BusStation {
     private LocalDateTime arrivedDateTime;
     @Column(name="DEPARTED_DATE_TIME")
     private LocalDateTime departedDateTime;
+
+    public void setArrivedAndStatus(LocalDateTime arrivedDateTime, StationStatus stationStatus){
+        this.arrivedDateTime = arrivedDateTime;
+        this.stationStatus = stationStatus;
+    }
+
+    public void setDepartedAndStatus(LocalDateTime departedDateTime, StationStatus stationStatus){
+        this.departedDateTime = departedDateTime;
+        this.stationStatus = stationStatus;
+    }
 
 }
